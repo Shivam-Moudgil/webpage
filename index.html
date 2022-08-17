@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
      <link rel="stylesheet" href="css/swiper-bundle.min.css">
+     <link rel="stylesheet" href="./styles/nav.css">
     <style>
         *{
             margin: 0px;
@@ -270,10 +271,11 @@ border-color: rgb(11, 11, 11);
     color: white;
     font-weight: bolder;
 }
-
 </style>
+
 </head>
 <body>
+  <div id="navbar"></div>
  <div id="all"> <div id="bcg">
     <h1>Fitness starts with what you eat.</h1>
     <p>Take control of your goals. Track calories, break down ingredients, and log activities with MyFitnessPal.</p>
@@ -281,15 +283,15 @@ border-color: rgb(11, 11, 11);
             <div class="wr">
 <button id="bt1">START FOR FREE</button>
             </div>
-            <p>Already have an account? <a href="">Login</a></p>
+            <p>Already have an account? <a href="login.html">Login</a></p>
         </div>
     <div id="see">
         <h1>Search over 11 million foods in our database.</h1>
         <p>
 What's in your food? Learn about calorie count, nutrition information and serving size.</p>
-     <form action="">
-        <input type="search" id="search" placeholder="search here" onkeydown="search()">
-    </form> </div>
+     <!-- <form action=""> -->
+        <input type="text" id="search" placeholder="Search here">
+    <!-- </form> </div> -->
   
     </div>
 
@@ -411,6 +413,7 @@ Under 300 Calories</h3>
     
 </body>
 </html>
+<script src="./for fetch/navF.js" type="module"></script>
 <script>
     let slideIndex = 1;
 showSlides(slideIndex);
@@ -440,4 +443,37 @@ function showSlides(n) {
   slides[slideIndex-1].style.display = "block";
   dots[slideIndex-1].className += " active";
 }
+
+let search = document.getElementById("search");
+let a;
+search.addEventListener("keydown", async function (event) {
+
+if(event.code=="Enter"){
+    let inp=search.value;
+    console.log(inp)
+    let url=`https://www.themealdb.com/api/json/v1/1/search.php?s=${inp}`
+    let res=await fetch(url);
+    let data=await res.json();
+    // console.log(data.meals)
+    let all=data.meals
+    console.log(all)
+    localStorage.setItem("dishes",JSON.stringify(all))
+    window.location.href="data.html"
+}
+
+});
+
+bt1.onclick=()=>{
+  window.location.href="./signup.html"
+}
 </script>
+  <!-- if (event.code == "Enter") {
+    
+    let inp = search.value;   
+    console.log(inp) ;
+    let res = await fetch(
+      `https://www.themealdb.com/api/json/v1/1/search.php?s=${inp}`
+    );
+    let data = await res.json(); 
+   console.log(data)
+} -->

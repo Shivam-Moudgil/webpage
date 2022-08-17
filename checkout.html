@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        background-color: lightgrey;
+        background-image: url(https://img.freepik.com/free-photo/indian-food-circular-frame-with-copy-space_23-2148747658.jpg?w=1060&t=st=1660288139~exp=1660288739~hmac=53c1a0fcd15fe30248357a735545219b6b9dfbcfaa1391dbc3fcb52987929287);
+        background-size: cover;
+      }
+      #form_D {
+        width: 30%;
+        margin: auto;
+        margin-top: 130px;
+      }
+      form {
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px,
+          rgba(0, 0, 0, 0.23) 0px 3px 6px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        background-color: lightblue;
+        padding: 30px;
+        height: 300px;
+        border-radius: 9px;
+      }
+      form > h1 {
+        text-align: center;
+        margin: 0px;
+      }
+      input {
+        height: 40px;
+        border-radius: 8px;
+        padding-left: 20px;
+      }
+    </style>
+    <link rel="stylesheet" href="./styles/nav.css" />
+  </head>
+  <body>
+    <div id="navbar"></div>
+    <div id="form_D">
+      <form
+        action="
+    "
+      >
+        <h1>Checkout</h1>
+        <input type="text" placeholder="Enter your Name" id="name" required />
+        <input
+          type="number"
+          placeholder="Enter your number"
+          id="num"
+          required
+        />
+        <input type="text" placeholder="Enter your Address" required />
+        <input type="submit" value="Place your Order" />
+      </form>
+    </div>
+  </body>
+</html>
+<script src="./for fetch/navF.js" type="module"></script>
+<script>
+  function append_All() {
+    let abs = document.querySelector("form");
+    abs.addEventListener("submit", function (e) {
+      e.preventDefault();
+      localStorage.removeItem("orders");
+      localStorage.removeItem("dishes");
+      alert("Order is on the way");
+      let body = document.querySelector("body");
+      body.innerHTML = "";
+      let as = document.getElementById("form_D");
+      let img = document.createElement("img");
+      img.style.width = "400px";
+      img.style.marginLeft = "550px";
+      img.style.marginTop = "300px";
+      img.style.borderRadius = "10px";
+      img.src = "https://c.tenor.com/e9hR32-zDUcAAAAM/on-my-way-racing.gif";
+      body.append(img);
+      setTimeout(() => {
+        alert("Order Delivered");
+      }, 5000);
+      setTimeout(() => {
+        window.location.href = "./index.html";
+      }, 6000);
+    });
+  }
+  append_All();
+</script>
